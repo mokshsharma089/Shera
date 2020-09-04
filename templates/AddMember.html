@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="margin-left:25%;margin-right:25%">
+    {% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {% endif %}
+    <p>Group Code = <strong>{{code}}</strong></p>
+    
+    <form action="" method="POST" >
+        {% csrf_token %}
+        <hr>
+        <label for="Name">Enter Name</label>
+        <input type="text" name="Name" id="name">
+        <br />
+        <input type="submit" class="btn btn-primary">
+        <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+    </form>
+</div>
+
+{% endblock %}

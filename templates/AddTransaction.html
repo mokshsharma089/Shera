@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin-left:25%;margin-right:25%">
+{% if message %}
+<div class="alert alert-danger" role="alert">
+    {{message}}
+  </div>
+  {% endif %}
+<h2>{{code}}</h2>
+
+<form action="" method="POST" >
+    {% csrf_token %}
+    <hr>
+    <label for="member">payment made by:-</label>
+    <select name="member" id="member">
+        {% for m in members %}
+        <option value="{{m.pk}}">{{m.name}}</option>
+        {% endfor %}
+      </select>
+      <a href="{% url 'customGroupAddMember' slug=code %}" class="btn btn-primary" style="color:white">Add Member</a>
+    <hr>
+    <label for="amount">Enter Amount in ₹ </label>
+    <input type="number" min="0" id="amount" name="amount">
+    <hr>
+    <label for="title">Enter Expense Title</label>
+    <input type="text" id="title" name="title">
+    <hr>
+    <input type="submit" class="btn btn-primary">
+    <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+</form>
+</div>
+{% endblock %}

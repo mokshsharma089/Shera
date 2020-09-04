@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="margin-left:25%;margin-right:25%">
+    {% if message %}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {% endif %}
+    <p>New Group Code = <strong>{{code}}</strong></p>
+    
+    <form action="" method="POST" >
+        {% csrf_token %}
+        <hr>
+        <input type="hidden" name="code" value="{{code}}">
+        <label for="pass1">Enter Password</label>
+        <input type="password" name="password1" id="pass1">
+        <br />
+        <label for="pass2">Re Enter Password</label>
+        <input type="password" name="password2" id="pass2">
+        <hr>
+        <input type="submit" class="btn btn-primary">
+        <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+    </form>
+</div>
+
+{% endblock %}
