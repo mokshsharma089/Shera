@@ -1,29 +1,91 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% block content %}
-
-<h2 style="margin-left:45%">{{code}}</h2>
+<div style='display: flex;
+justify-content: center;
+align-items: center;margin-top:20px'>
+{{code}}
+<hr>
+<h3>{{title|title}}</h3>
+<hr>
+<h5>Total: ₹{{total}}</h5>
+</div>
 {% if members %}
-    <table class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
             <th>Name</th>
+            <th>Amount Spent By Member</th>
+            <th>Amount To Give</th>
+            <th>Amount To Get</th>
         </tr>
         </thead>
         <tbody>
             {% for m in members %}
-            <tr>
+            {% if m.delta > 0 %}
+            <tr style="background-color:#49384f;color:white">
                 <td>{{m.name|title}}</td>
+                <td>₹{{m.amount_spent}}</td>
+                <td>₹{{m.delta}}</td>
+                <td>₹0.0</td>
             </tr>
+            {% else %}
+            <tr style="background-color:#f0f5f2;">
+                <td>{{m.name|title}}</td>
+                <td>₹{{m.amount_spent}}</td>
+                <td>₹0.0</td>
+                <td>₹{{m.delta|abs}}</td>
+            </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>
         
 {% else %}
-    No members added yet
+<div style='display: flex;
+justify-content: center;
+align-items: center;margin-top:20px'>
+    <h1>No Members Added Yet</h1>
+</div>
+    
 {%endif %}
+<br /><hr>
+<div style='display: flex;
+justify-content: center;
+align-items: center;'>
+<a href="{% url 'customGroupAddMember' slug=code %}" class="btn btn-primary" style="color:white;margin-right:20px">Add Member</a>
+{% if members %}
+<a href="{% url 'customGroupAddTransaction' slug=code %}" class="btn btn-primary" style="color:white;margin-right:20px">Add Transaction</a>
+{%endif %}
+{%if transactions%}
+<button class="btn btn-primary" id='showLog' style="color:white;" onclick="ToggleLog()">Show Transaction Log</button>
+{% endif %}
+</div>
+{% if transactions %}
+<div id='log' style="display:none">
+<div style='display: flex;justify-content: center;align-items: center; margin-top:40px'>
+    <h4>Transaction Log</h4>
+</div>
+    <table class="table table-striped">
+        <thead>
+            <th>On Date</th>
+            <th>By Member</th>
+            <th>Amount</th>
+            <th>Expense title</th>
+        </thead>
+        <tbody>
+            {% for t in transactions %}
+            <tr>
+                <td>{{t.date}}</td>
+                <td>{{t.member.name|title}}</td>
+                <td>{{t.amount}}</td>
+                <td>{{t.title}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
 
-<a href="{% url 'customGroupAddMember' slug=code %}" class="btn btn-primary" style="color:white">Add Member</a>
-<hr>
-<a href="{% url 'customGroupAddTransaction' slug=code %}" class="btn btn-primary" style="color:white">Add Transaction</a>
 {% endblock %}
 

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin:25%;margin-top:15%">
+    {% if message %}
+        <div class="alert alert-danger" role="alert"><h2>{{message}}</h2></div>
+    {% endif %}
+    <form action=" " method="POST">
+        {% csrf_token %}
+        <div id="findusingCode">
+            <label for="code">Enter Tab's Code</label>
+            <input type="text" name="code" id="code">
+        </div>
+        <br />
+        <h2>OR</h2>
+        <br />
+        <div id="findusingMail">
+            <label for="mail">Enter Email Used While Creating Tab</label>
+            <input type="email" name="mail" id="mail">
+        </div>
+        
+        
+        <hr>
+        <div style='display: flex;justify-content: center;align-items: center;'>
+            <input type="submit" class="btn btn-primary" style="margin-right:20px">
+            <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+        </div>
+        
+    </form>
+    <!-- <button class="btn btn-primary" id="findUsingButton" onclick="findusingtoggle()" >Click To Find Using Tab Code</button> -->
+</div>
+{% endblock %}

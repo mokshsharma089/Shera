@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin:25%;margin-top:5%">
+    <div style='display: flex;justify-content: center;align-items: center;margin-top:20px'>
+        For &nbsp;<h2>{{mail}}</h2>&nbsp; Open Tabs are
+    </div>
+        <table class="table table-striped" style="margin-top:20px">
+            <thead>
+                <tr>
+                    <th>Date Tab Opened</th>
+                    <th>Tab Title</th>
+                    <th>Tab Code</th>
+                    <th>Tab Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for g in groups %}
+                <tr>
+                    <td>{{g.date}}</td>
+                    <td>{{g.title|title}}</td>
+                    <td><a href="{% url 'customGroup' slug=g.code %}">{{g.code}}</a></td>
+                    <td>{{g.total}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+</div>
+{% endblock %}

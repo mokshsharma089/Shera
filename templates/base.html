@@ -23,17 +23,6 @@
     <div class='container'>
         <!-- new row -->
         <div class="row">
-            <div class="col-2">
-              </div>
-            <div class="col-6">
-                <h1 style="padding-left:55%">Shera</h1>
-            </div>
-            <div class="col-2">
-            </div>
-        </div>
-        <!-- endof row -->
-        <!-- new row -->
-        <div class="row">
             <div class="col">
                 {% block content %}
                 {% endblock %}
@@ -42,7 +31,30 @@
         <!-- endof row -->
 
     </div>
-    
+    <script>
+        function ToggleLog(){
+            if(document.getElementById('log').style.display=='block'){
+                document.getElementById('log').style.display='none';
+                document.getElementById('showLog').innerHTML='Show Transaction Log';
+            }
+            else{
+                document.getElementById('log').style.display='block'
+                document.getElementById('showLog').innerHTML='Hide Transaction Log';
+            }
+        }
+        // function findusingtoggle(){
+        //     if(document.getElementById('findusingMail').style.display=='block' && document.getElementById('findusingCode').style.display=='none'){
+        //         document.getElementById('findusingMail').style.display=='none';
+        //         document.getElementById('findusingCode').style.display=='block';
+        //         document.getElementById('findUsingButton').innerHTML='Click To Find Using Mail';
+        //     }
+        //     if(document.getElementById('findusingMail').style.display=='none' && document.getElementById('findusingCode').style.display=='block'){
+        //         document.getElementById('findusingMail').style.display=='block';
+        //         document.getElementById('findusingCode').style.display=='none';
+        //         document.getElementById('findUsingButton').innerHTML='Click To Find Using Tab Code';
+        //     }
+        // }
+    </script>
     
 </body>
 </html>

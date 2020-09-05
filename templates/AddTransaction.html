@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<div style="margin-left:25%;margin-right:25%">
+<div style="margin:25%;margin-top:15%">
 {% if message %}
 <div class="alert alert-danger" role="alert">
     {{message}}
   </div>
   {% endif %}
-<h2>{{code}}</h2>
+  <p>Group Code = <strong>{{code}}</strong></p>
+  <p>Title = <strong>{{title|title}}</strong></p>
+  <p>mail = <strong>{{mail}}</strong></p>
 
 <form action="" method="POST" >
     {% csrf_token %}
@@ -25,8 +27,12 @@
     <label for="title">Enter Expense Title</label>
     <input type="text" id="title" name="title">
     <hr>
-    <input type="submit" class="btn btn-primary">
-    <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+    <div style='display: flex;justify-content: center;align-items: center;'>
+      <input type="submit" class="btn btn-primary" style="margin-right: 20px;">
+      <button class="btn btn-primary" style="margin-right: 20px;"><a href="{% url 'customGroup' slug=code %}" style="color:white;">Back to Tab</a></button>
+      <button class="btn btn-primary"><a href="{% url 'home' %}" style="color:white">Home</a></button>
+    </div>
+    
 </form>
 </div>
 {% endblock %}
