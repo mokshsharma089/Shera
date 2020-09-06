@@ -11,7 +11,7 @@ align-items: center;margin-top:20px'>
 <h5>Total: ₹{{total}}</h5>
 </div>
 {% if members %}
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
             <th>Name</th>
@@ -23,14 +23,14 @@ align-items: center;margin-top:20px'>
         <tbody>
             {% for m in members %}
             {% if m.delta > 0 %}
-            <tr style="background-color:#49384f;color:white">
+            <tr>
                 <td>{{m.name|title}}</td>
                 <td>₹{{m.amount_spent}}</td>
                 <td>₹{{m.delta}}</td>
                 <td>₹0.0</td>
             </tr>
             {% else %}
-            <tr style="background-color:#f0f5f2;">
+            <tr>
                 <td>{{m.name|title}}</td>
                 <td>₹{{m.amount_spent}}</td>
                 <td>₹0.0</td>
